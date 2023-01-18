@@ -8,6 +8,7 @@ const App = () => {
       sx={{
         width: '100vw',
         minHeight: '100vh',
+        maxHeight: '100vh',
         p: 5,
         gap: 2,
         display: 'flex',
@@ -20,6 +21,8 @@ const App = () => {
         direction="row"
         sx={{
           width: '55vw',
+          minHeight: '75vh',
+          maxHeight: '75vh',
           p: 5,
           display: 'flex',
           flexDirection: 'column',
@@ -27,6 +30,11 @@ const App = () => {
           background: '#fff',
           boxShadow:
             'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+          overflowY: 'scroll',
+          //hide scrollbar
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Routes>

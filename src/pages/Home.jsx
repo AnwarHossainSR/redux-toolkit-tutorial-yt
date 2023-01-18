@@ -1,8 +1,11 @@
 import { Button, CardContent, Stack } from '@mui/material';
+import { useState } from 'react';
+import CustomModal from '../components/CustomModal';
 import TaskSection from '../components/TaskSection';
 import { tasks } from '../utils/constant';
 
 const Home = () => {
+  const [open, setOpen] = useState(false);
   return (
     <Stack width="100%">
       <Stack
@@ -12,7 +15,11 @@ const Home = () => {
         }}
       >
         <Stack width="18%">
-          <Button variant="contained" sx={{ background: '#4fc3f7' }}>
+          <Button
+            variant="contained"
+            sx={{ background: '#4fc3f7' }}
+            onClick={() => setOpen(true)}
+          >
             Add Task
           </Button>
         </Stack>
@@ -20,6 +27,10 @@ const Home = () => {
       <CardContent>
         <TaskSection tasks={tasks} />
       </CardContent>
+      {
+        open && <CustomModal open={open} setOpen={setOpen} />
+        // <CustomModal open={open} setOpen={setOpen} />
+      }
     </Stack>
   );
 };

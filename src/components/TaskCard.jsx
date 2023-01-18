@@ -5,10 +5,15 @@ import { generateRandomColorFromMUI } from '../utils/colors';
 const TaskCard = ({ task }) => {
   const handleEvent = (e, name) => {
     //handle double click event
-    if (e.detail === 2) {
-      console.log(name);
+    if (e.detail === 1) {
+      alert('single click', name);
+    }
+    //handle right click event
+    if (e.detail === 1) {
+      alert('double click');
     }
   };
+
   return (
     <Stack>
       <Stack
