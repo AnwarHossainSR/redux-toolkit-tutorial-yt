@@ -1,40 +1,40 @@
 export const tasksArray = {
-  new: [
+  new : [
     {
-      name: 'Quarterly Newsletter',
-      date: 'Tomorrow',
+      name : 'Quarterly Newsletter',
+      date : 'Tomorrow',
     },
   ],
-  today: [
+  today : [
     {
-      name: 'Request for Proposal',
-      date: 'Today',
+      name : 'Request for Proposal',
+      date : 'Today',
     },
     {
-      name: 'Launching of new product',
-      date: 'Today',
+      name : 'Launching of new product',
+      date : 'Today',
     },
     {
-      name: 'Interview with client',
-      date: 'Today',
+      name : 'Interview with client',
+      date : 'Today',
     },
   ],
-  upcoming: [
+  upcoming : [
     {
-      name: 'Meeting with client',
-      date: 'Tomorrow',
+      name : 'Meeting with client',
+      date : 'Tomorrow',
     },
     {
-      name: 'Go to the gym',
-      date: 'Tomorrow',
+      name : 'Go to the gym',
+      date : 'Tomorrow',
     },
     {
-      name: 'Need to buy groceries',
-      date: '21 Jan',
+      name : 'Need to buy groceries',
+      date : '21 Jan',
     },
     {
-      name: 'Work on new project',
-      date: '25 Jan',
+      name : 'Work on new project',
+      date : '25 Jan',
     },
   ],
 };

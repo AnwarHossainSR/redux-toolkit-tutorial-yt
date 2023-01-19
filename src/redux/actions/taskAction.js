@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { getReadableFormate } from '../../utils/helper';
-import { addTask, getTaskLoading, getTasks } from '../reducers/tasksReducer';
+import {toast} from 'react-toastify';
+
+import {getReadableFormate} from '../../utils/helper';
+import {addTask, getTaskLoading, getTasks} from '../reducers/tasksReducer';
 
 export const getTasksAction = () => async (dispatch) => {
   getTaskLoading();
@@ -11,7 +12,7 @@ export const getTasksAction = () => async (dispatch) => {
     dispatch(getTasks(filteredDate));
   } catch (err) {
     toast(err, {
-      type: 'error',
+      type : 'error',
     });
   }
 };
@@ -21,11 +22,11 @@ export const addTaskAction = (task) => async (dispatch) => {
     const res = await axios.post('/tasks', task);
     dispatch(addTask(res.data));
     toast('Task added successfully', {
-      type: 'success',
+      type : 'success',
     });
   } catch (err) {
     toast(err, {
-      type: 'error',
+      type : 'error',
     });
   }
 };
