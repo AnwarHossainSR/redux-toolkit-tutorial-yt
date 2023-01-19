@@ -1,4 +1,5 @@
 import { Chip, Stack, Typography } from '@mui/material';
+import { AiFillEdit } from 'react-icons/ai';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { generateRandomColorFromMUI } from '../utils/colors';
 
@@ -46,10 +47,19 @@ const TaskCard = ({ task }) => {
           }}
         >
           <Chip
-            label="Chip Filled"
-            sx={{ background: generateRandomColorFromMUI(), color: '#fff' }}
+            label={task.date}
+            sx={{
+              background: generateRandomColorFromMUI(),
+              color: '#fff',
+              height: '25px',
+            }}
           />
-          <Typography color="#00bfa5">{task.date}</Typography>
+          <AiFillEdit
+            color="#9e9e9e"
+            size={20}
+            style={{ cursor: 'pointer' }}
+            onClick={() => console.log(task.id)}
+          />
         </Stack>
       </Stack>
     </Stack>

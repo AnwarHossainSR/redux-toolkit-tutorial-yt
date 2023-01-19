@@ -1,11 +1,22 @@
 import { Button, CardContent, Stack } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomModal from '../components/CustomModal';
 import TaskSection from '../components/TaskSection';
-import { tasks } from '../utils/constant';
+import { getTasksAction } from '../redux/actions/taskAction';
+import { filteredData } from '../utils/helper';
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const { tasks, isLoading } = useSelector((state) => state.tasks);
+
+  const { todaysTasks, upcomingTasks, newTask } = filteredData(tasks);
+
+  useEffect(() => {
+    dispatch(getTasksAction());
+  }, [dispatch]);
+
   return (
     <Stack width="100%">
       <Stack
@@ -25,12 +36,14 @@ const Home = () => {
         </Stack>
       </Stack>
       <CardContent>
-        <TaskSection tasks={tasks} />
+        <TaskSection
+          todaysTasks={todaysTasks}
+          upcomingTasks={upcomingTasks}
+          newTask={newTask}
+          isLoading={isLoading}
+        />
       </CardContent>
-      {
-        open && <CustomModal open={open} setOpen={setOpen} />
-        // <CustomModal open={open} setOpen={setOpen} />
-      }
+      {open && <CustomModal open={open} setOpen={setOpen} />}
     </Stack>
   );
 };

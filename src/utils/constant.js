@@ -1,4 +1,4 @@
-export const tasks = {
+export const tasksArray = {
   new: [
     {
       name: 'Quarterly Newsletter',
