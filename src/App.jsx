@@ -20,9 +20,9 @@ const App = () => {
       <Stack
         direction="row"
         sx={{
-          width: '55vw',
+          width: '65vw',
           minHeight: '75vh',
-          maxHeight: '75vh',
+          maxHeight: '90vh',
           p: 5,
           display: 'flex',
           flexDirection: 'column',
