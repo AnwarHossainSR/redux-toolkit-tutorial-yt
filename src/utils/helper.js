@@ -1,11 +1,12 @@
 export const filteredData = (data) => {
+  if (!data || data.length === 0)
+    return { newTask: {}, todaysTasks: [], upcomingTasks: [] };
   const todaysTasks = data.filter((task) => {
     return task.date === 'Today';
   });
   const upcomingTasks = data.filter((task) => {
     return task.date !== 'Today';
   });
-  // last task is new task
   const newTask = data[data.length - 1];
 
   return { newTask, todaysTasks, upcomingTasks };

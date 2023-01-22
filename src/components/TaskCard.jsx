@@ -1,18 +1,24 @@
 import { Chip, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
+import { deleteTaskAction } from '../redux/actions/taskAction';
 import { generateRandomColorFromMUI } from '../utils/colors';
+import UpdateModal from './UpdateModal';
 
 const TaskCard = ({ task }) => {
-  const handleEvent = (e, name) => {
-    //handle double click event
+  const [open, setOpen] = useState(false);
+  const [updateTask, setTask] = useState({});
+  const dispatch = useDispatch();
+  const handleEvent = (e, id) => {
     if (e.detail === 1) {
-      alert('single click', name);
+      dispatch(deleteTaskAction(id));
     }
-    //handle right click event
-    if (e.detail === 1) {
-      alert('double click');
-    }
+  };
+  const handleUpdateModal = (task) => {
+    setTask(task);
+    setOpen(true);
   };
 
   return (
@@ -33,7 +39,7 @@ const TaskCard = ({ task }) => {
             flexDirection: 'row',
             gap: 1,
           }}
-          onClick={(e) => handleEvent(e, task.name)}
+          onClick={(e) => handleEvent(e, task.id)}
         >
           <HiOutlineCheckCircle color="#616161" size={24} />
           <Typography color="#616161">{task.name}</Typography>
@@ -43,7 +49,7 @@ const TaskCard = ({ task }) => {
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'row',
-            gap: 1,
+            gap: 3,
           }}
         >
           <Chip
@@ -58,10 +64,11 @@ const TaskCard = ({ task }) => {
             color="#9e9e9e"
             size={20}
             style={{ cursor: 'pointer' }}
-            onClick={() => console.log(task.id)}
+            onClick={() => handleUpdateModal(task)}
           />
         </Stack>
       </Stack>
+      {open && <UpdateModal open={open} setOpen={setOpen} task={updateTask} />}
     </Stack>
   );
 };

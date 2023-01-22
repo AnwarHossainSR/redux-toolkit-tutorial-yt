@@ -2,7 +2,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { getReadableFormate } from '../../utils/helper';
-import { addTask, getTaskLoading, getTasks } from '../reducers/tasksReducer';
+import {
+  addTask,
+  deleteTask,
+  getTaskLoading,
+  getTasks,
+} from '../reducers/tasksReducer';
 
 export const getTasksAction = () => async (dispatch) => {
   getTaskLoading();
@@ -22,6 +27,34 @@ export const addTaskAction = (task) => async (dispatch) => {
     const res = await axios.post('/tasks', task);
     dispatch(addTask(res.data));
     toast('Task added successfully', {
+      type: 'success',
+    });
+  } catch (err) {
+    toast(err, {
+      type: 'error',
+    });
+  }
+};
+
+export const deleteTaskAction = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/tasks/${id}`);
+    dispatch(deleteTask(id));
+    toast('Task deleted successfully', {
+      type: 'success',
+    });
+  } catch (err) {
+    toast(err, {
+      type: 'error',
+    });
+  }
+};
+
+export const updateTaskAction = (id, task) => async (dispatch) => {
+  try {
+    await axios.patch(`/tasks/${id}`, task);
+    dispatch(getTasksAction());
+    toast('Task updated successfully', {
       type: 'success',
     });
   } catch (err) {

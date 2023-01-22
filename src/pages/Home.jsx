@@ -1,4 +1,4 @@
-import { Button, CardContent, Stack } from '@mui/material';
+import { Button, CardContent, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomModal from '../components/CustomModal';
@@ -14,8 +14,8 @@ const Home = () => {
   const { todaysTasks, upcomingTasks, newTask } = filteredData(tasks);
 
   useEffect(() => {
-    dispatch(getTasksAction());
-  }, [dispatch]);
+    if (tasks?.length === 0) dispatch(getTasksAction());
+  }, [dispatch, tasks]);
 
   return (
     <Stack width="100%">
@@ -36,12 +36,17 @@ const Home = () => {
         </Stack>
       </Stack>
       <CardContent>
-        <TaskSection
-          todaysTasks={todaysTasks}
-          upcomingTasks={upcomingTasks}
-          newTask={newTask}
-          isLoading={isLoading}
-        />
+        {isLoading && <h1>Loading...</h1>}
+        {!isLoading && tasks?.length > 0 ? (
+          <TaskSection
+            todaysTasks={todaysTasks}
+            upcomingTasks={upcomingTasks}
+            newTask={newTask}
+            isLoading={isLoading}
+          />
+        ) : (
+          <Typography color="#616161">No Tasks</Typography>
+        )}
       </CardContent>
       {open && <CustomModal open={open} setOpen={setOpen} />}
     </Stack>
